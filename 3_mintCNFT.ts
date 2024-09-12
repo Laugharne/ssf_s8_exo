@@ -22,7 +22,6 @@ import {
 
 import {
   readCsv,
-  txToLink
 } from './utils';
 
 import {
@@ -45,7 +44,6 @@ const run = async () => {
   try {
     const umi = createUmi(rpcURL)
       .use(mplTokenMetadata())
-      //.use(nftStorageUploader({ token: nftStorageToken }))
       .use(mplBubblegum());
 
     const keyPair = umi.eddsa.createKeypairFromSecretKey(secretKey);
@@ -62,7 +60,6 @@ const run = async () => {
 
     const merkleTreeTxt     = fs.readFileSync("./data/merkleTree"+nodeEnv+".txt", 'utf8');
     const merkleTreeAccount = await fetchMerkleTree(umi, publicKey(merkleTreeTxt));
-    // console.log("merkleTreeAccount:", merkleTreeAccount);
     console.log("merkleTreeAccount:", merkleTreeAccount.publicKey);
 
     const collectionMintTxt     = fs.readFileSync("./data/collectionMint"+nodeEnv+".txt", 'utf8');
@@ -76,26 +73,24 @@ const run = async () => {
       nftItemJsonUri
     );
 
-    const data = await readCsv('./fellow.csv');
+    const data = await readCsv('./addresses.csv');
 
-    //data.forEach((item) => {
     for( let i = 0; i < data.length; i++) {
       console.log("-", data[i].address);
 
       const mintItemTo = publicKey(data[i].address);
       //console.log(mintItemTo);
 
-      ///
       const mint = await mintToCollectionV1(umi, {
         leafOwner     : mintItemTo,
         merkleTree    : merkleTreeAccount.publicKey,
-        collectionMint: collectionMintAccount,//COLLECTION_MINT,
+        collectionMint: collectionMintAccount,
         metadata      : {
           name                : NFT_ITEM_NAME,
           uri                 : nftItemJsonUri,
           sellerFeeBasisPoints: FEE_PERCENT * 100,
           collection          : {
-            key:      collectionMintAccount,//COLLECTION_MINT,
+            key:      collectionMintAccount,
             verified: false
           },
           creators            : CREATORS,
@@ -118,11 +113,7 @@ const run = async () => {
       await new Promise(_ => setTimeout(_,2000));
       console.log("");
 
-      ///
     }
-    //});
-
-    //return;
 
   } catch (e) {
     console.error(e)

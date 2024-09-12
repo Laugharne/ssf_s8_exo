@@ -1,5 +1,6 @@
 # Compressed NFTs
 
+![](assets/2024-09-12-17-34-38.png)
 
 **Exercise:** Create a **cNFT collection** of your own **profile picture** and **social links** as metadata and airdrop it to other fellows.
 
@@ -10,6 +11,31 @@ Topics in this exercise:
 - Compressed NFT
 - Metaplex
 - Bubblegum
+
+**Table of contents:**
+<!-- TOC -->
+
+- [Compressed NFTs](#compressed-nfts)
+	- [Installation](#installation)
+	- [Overview](#overview)
+	- [Settings](#settings)
+		- [".env" file](#env-file)
+		- ["key.json" file](#keyjson-file)
+		- ["config.ts" file](#configts-file)
+		- ["fellow.csv" file](#fellowcsv-file)
+	- [Usage](#usage)
+	- [Tree repository](#tree-repository)
+	- [Metadata](#metadata)
+		- [cNFT Collection Metadata](#cnft-collection-metadata)
+		- [cNFT item metadata](#cnft-item-metadata)
+		- [Some references about metadata](#some-references-about-metadata)
+	- [Metaplex dependancies versions](#metaplex-dependancies-versions)
+	- [Some traces of my first attempts to mint cNFTs](#some-traces-of-my-first-attempts-to-mint-cnfts)
+	- [Resources](#resources)
+
+<!-- /TOC -->
+
+
 
 ## Installation
 
@@ -40,6 +66,7 @@ This project was created using `bun init` in bun v1.1.20. [Bun](https://bun.sh) 
 
 If you occure this problem: `bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)`, resolve it by running the following command `npm rebuild`
 
+
 ## Overview
 
 **Compressed NFTs** on Solana are a more scalable, cost-efficient way to mint and manage NFTs, using off-chain storage with on-chain proofs via **Merkle trees**. Here's how it works:
@@ -51,6 +78,7 @@ If you occure this problem: `bigint: Failed to load bindings, pure JS will be us
 - **Minting**: The process of adding new NFTs to a collection. This is done with `mintToCollectionV1()` from `metaplex/bubblegum`, allowing efficient addition of multiple NFTs to a **collection** using the **Merkle tree** structure.
 
 Compressed NFTs enable large-scale minting with reduced costs, making them ideal for high-volume use cases like gaming and digital collectibles.
+
 
 ## Settings
 
@@ -80,9 +108,9 @@ There is several fields to set:
   - 2^5 = 32 (too small)
   - 2^6 = **64** (sufficient)
 
-  So, the smallest depth that can hold 37 NFTs seems to bes `maxDepth = 6`.
+  So, the smallest depth that can hold 37 NFTs seems to be `maxDepth = 6`.
 
-  **But** there's only some specific couple of values for `MERKLE_MAX_DEPTH` and `MERKLE_MAX_BUFFER_SIZE` who seems to be authorized for the Merkle Tree !
+  **But** there's only some **specific couple of values** for `MERKLE_MAX_DEPTH` and `MERKLE_MAX_BUFFER_SIZE` who seems to be authorized for the Merkle Tree !
 
   See: [solana-program-library/account-compression/programs/account-compression/src/state/concurrent_merkle_tree_header.rs](https://github.com/solana-labs/solana-program-library/blob/master/account-compression/programs/account-compression/src/state/concurrent_merkle_tree_header.rs#L160))
 
@@ -157,13 +185,12 @@ We can run the processus...
 2. Then creating the Merkle Tree : `bun run 2_createMerkleTree`
 3. This program read a CSV file with all the addresses to airdrop : `bun run 3_mintCNFT.ts`
 
-Each call generate a "file" in data directory, to keep a trace of the processus and mainly they're used cross programs too...
-
+Each call generate a "file" in data directory, to keep a trace of the processus These data are used cross programs too...
 
 
 ## Tree repository
 
-```bash
+```
 .
 ├── .gitignore
 ├── 1_createNFTCollection.ts
@@ -189,6 +216,7 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 ├── tsconfig.json
 └── utils.ts
 ```
+
 
 ## Metadata
 
@@ -281,6 +309,7 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 - [How to Create a NFT On Solana | Token Metadata Guides](https://developers.metaplex.com/token-metadata/guides/javascript/create-an-nft)
 - [Solana NFT Metadata Deep Dive](https://www.quicknode.com/guides/solana-development/nfts/solana-nft-metadata-deep-dive)
 
+
 ## Metaplex dependancies versions
 
 ```json
@@ -289,6 +318,7 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 "@metaplex-foundation/umi-bundle-defaults":      "^0.8.9",
 "@metaplex-foundation/umi-uploader-nft-storage": "^0.8.9",
 ```
+
 
 ## Some traces of my first attempts to mint cNFTs
 
@@ -301,6 +331,8 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 - **cNFt inside Phantom wallet**
   ![](assets/2024-09-10-16-22-42.png)
 
+
+
 ## Resources
 
 **From fellowship:**
@@ -309,6 +341,7 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 - [All You Need to Know About Compression on Solana](https://www.helius.dev/blog/all-you-need-to-know-about-compression-on-solana) (_The most detailed blog on Solana's compression_)
 - [Exploring NFT Compression on Solana](https://www.helius.dev/blog/solana-nft-compression) (_All about specifically NFT compression (cNFTS)_)
 - [Overview | Bubblegum](https://developers.metaplex.com/bubblegum) (_Metaplex's Bubblegum program's docs_)
+- [compressed.app - estimate costs for compressed NFTs](https://compressed.app/)
 
 **Metaplex/Bubblegum:**
 
@@ -334,20 +367,8 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 - [Example usage of the TS SDK](https://spl.solana.com/account-compression/usage)
 - [solana-program-library/account-compression/programs at master · solana-labs/solana-program-library · GitHub](https://github.com/solana-labs/solana-program-library/tree/master/account-compression/programs)
 - [Merkle Trees Visualization](https://efficient-merkle-trees.netlify.app/)
-- [Intro to Solana cNFTs: Solana Compressed NTFs Revolution](https://medium.com/liberal-arts-magazine/intro-to-solana-cnfts-solana-compressed-ntfs-revolution-8f61c94c4117)
 
-----
-- [Solana NFT: Adjusting Solana’s Compressed NFT Metadata](https://medium.com/@marrnuel123/solana-nft-adjusting-solanas-compressed-nft-metadata-59886fdba953)
-- [GitHub - helius-labs/compression-examples](https://github.com/helius-labs/compression-examples)
-- [All You Need to Know About Compression on Solana](https://www.helius.dev/blog/all-you-need-to-know-about-compression-on-solana)
-- [GitHub - solana-developers/compressed-nfts: Example code to use compressed NFTs (using state compression) on Solana](https://github.com/solana-developers/compressed-nfts)
-- [one-milion-nfts/next/src/util/utils.ts at main · solana-developers/one-milion-nfts · GitHub](https://github.com/solana-developers/one-milion-nfts/blob/main/next/src/util/utils.ts#L192)
-- --------
-- [How to Mint Solana Compressed NFTs (cNFTs) with TypeScript](https://medium.com/@KishiTheMechanic/how-to-mint-solana-compressed-nfts-cnfts-with-typescript-be9d0fa7ce30)
-  - [skeet-solana-mobile-stack/scripts/solana/cNFT at main · elsoul/skeet-solana-mobile-stack · GitHub](https://github.com/elsoul/skeet-solana-mobile-stack/tree/main/scripts/solana/cNFT)
+--------
 
-**Metadata:**
 
-- [Solana NFT Metadata Deep Dive](https://www.quicknode.com/guides/solana-development/nfts/solana-nft-metadata-deep-dive)
-- [Overview | Token Metadata](https://developers.metaplex.com/token-metadata)
-  - [How to Create a NFT On Solana | Token Metadata Guides](https://developers.metaplex.com/token-metadata/guides/javascript/create-an-nft)
+![](assets/julie.png)

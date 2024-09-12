@@ -176,7 +176,7 @@ dist
 
 key.json
 notes/
-fellow.csv
+addresses.csv
 
 backup/
 .zipignore

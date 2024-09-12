@@ -57,7 +57,6 @@ const run = async () => {
     });
     await builder.sendAndConfirm(umi);
 
-    //console.log('merkleTree:', merkleTree.publicKey)
     let cluster = ""; if (process.env.NODE_ENV !== 'production') { cluster = '?cluster=devnet';}
     const txLink = addrToLink( merkleTree.publicKey, cluster);
     console.log(txLink);
