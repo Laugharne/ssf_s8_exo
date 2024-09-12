@@ -12,15 +12,11 @@ import {
   createSignerFromKeypair,
 } from '@metaplex-foundation/umi';
 
-//import { nftStorageUploader } from '@metaplex-foundation/umi-uploader-nft-storage'
 
 import {
   FEE_PERCENT,
   CREATORS,
-  //COLLECTION_MINT,
   NFT_ITEM_NAME,
-  MINT_ITEM_TO,
-  //MERKLE_TREE,
   METADATA_ITEM_URL,
 } from './config';
 
@@ -44,7 +40,6 @@ const payerKeyFile = 'key.json';
 const keyData      = fs.readFileSync(payerKeyFile, 'utf8');
 const secretKey    = new Uint8Array(JSON.parse(keyData));
 
-//const nftStorageToken = process.env.NFT_STORAGE_KEY || ''
 
 const run = async () => {
   try {

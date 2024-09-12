@@ -103,8 +103,8 @@ There is several fields to set:
 
 
 - Two off-chain JSON file metadata, URL to set (_see section "Metadata" below_)
-  - `METADATA_COLLECTION_URL`
-  - `METADATA_ITEM_URL`
+  - `METADATA_COLLECTION_URL` for the collection
+  - `METADATA_ITEM_URL` for each items minted (_can be updated between each one_)
 - `IMAGE_URL` : Image URL of the cNFT
 - Name, symbol and description of the collection
 - `FEE_PERCENT` : The royalties shared by the creators in basis points (_550 means 5.5% royalties_)
@@ -130,7 +130,7 @@ export const NFT_ITEM_NAME      = 'Laugharne Limited Edition'
 
 In normal production environment, the off-chain data are hosted on services like **NFT.storage** or **ipfs** !
 
-For this exercise i choose to host them on a **GitHub** accout...
+For this exercise i choose to host them on a **GitHub** account...
 
 ### "fellow.csv" file
 
@@ -150,12 +150,44 @@ address
 
 ## Usage
 
-TO DO
+After set all required parameters and data as seen in previous section.
+
+We can run the processus...
+1. At first we create the cNFT collection : `bun run 1_createNFTCollection`
+2. Then creating the Merkle Tree : `bun run 2_createMerkleTree`
+3. This program read a CSV file with all the addresses to airdrop : `bun run 3_mintCNFT.ts`
+
+Each call generate a "file" in data directory, to keep a trace of the processus and mainly they're used cross programs too...
+
+
 
 ## Tree repository
 
 ```bash
-TO DO
+.
+├── .gitignore
+├── 1_createNFTCollection.ts
+├── 2_createMerkleTree.ts
+├── 3_mintCNFT.ts
+├── README.md
+├── assets
+│   └── 2024-09-10-16-22-42.png
+├── bun.lockb
+├── cnft_item_metadata.json
+├── cnft_metadata.json
+├── config.ts
+├── data
+│   ├── collectionImageUri.txt
+│   ├── collectionJsonUri.txt
+│   ├── collectionMintDevnet.txt
+│   ├── merkleTreeDevnet.txt
+│   ├── nftItemJsonUri.txt
+│   └── nftItemMintDevnet.txt
+├── index.ts
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+└── utils.ts
 ```
 
 ## Metadata

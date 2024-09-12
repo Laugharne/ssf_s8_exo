@@ -49,7 +49,6 @@ const run = async () => {
   try {
     const umi = createUmi(rpcURL)
       .use(mplTokenMetadata())
-//      .use(nftStorageUploader({ token: nftStorageToken }));
 
     const keyPair = umi.eddsa.createKeypairFromSecretKey(secretKey);
     const signer  = createSignerFromKeypair(
