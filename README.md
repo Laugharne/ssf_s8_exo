@@ -198,7 +198,9 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 ├── 3_mintCNFT.ts
 ├── README.md
 ├── assets
-│   └── 2024-09-10-16-22-42.png
+│   ├── 2024-09-10-16-22-42.png
+│   ├── 2024-09-12-17-34-38.png
+│   └── julie.png
 ├── bun.lockb
 ├── cnft_item_metadata.json
 ├── cnft_metadata.json
@@ -207,9 +209,12 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 │   ├── collectionImageUri.txt
 │   ├── collectionJsonUri.txt
 │   ├── collectionMintDevnet.txt
+│   ├── collectionMintMainnet.txt
 │   ├── merkleTreeDevnet.txt
+│   ├── merkleTreeMainnet.txt
 │   ├── nftItemJsonUri.txt
-│   └── nftItemMintDevnet.txt
+│   ├── nftItemMintDevnet.txt
+│   └── nftItemMintMainnet.txt
 ├── index.ts
 ├── package-lock.json
 ├── package.json
