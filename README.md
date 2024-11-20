@@ -372,6 +372,7 @@ Each call generate a "file" in data directory, to keep a trace of the processus 
 - [Example usage of the TS SDK](https://spl.solana.com/account-compression/usage)
 - [solana-program-library/account-compression/programs at master · solana-labs/solana-program-library · GitHub](https://github.com/solana-labs/solana-program-library/tree/master/account-compression/programs)
 - [Merkle Trees Visualization](https://efficient-merkle-trees.netlify.app/)
+- [How to mint compressed NFTs](https://medium.com/@laloutre/how-to-mint-compressed-nfts-dfcbee0ef51e)
 
 --------
 
